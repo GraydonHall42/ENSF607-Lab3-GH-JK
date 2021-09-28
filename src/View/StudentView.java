@@ -1,6 +1,8 @@
 package View;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionListener;
 
 public class StudentView extends JFrame{
@@ -12,6 +14,7 @@ public class StudentView extends JFrame{
     private JButton clearButton;
     private JPanel mainPanel;
     private JButton exitButton;
+    private JTextField tfCourseName;
 
     public void setOutputAreaText(String s){
         outputArea.setText(s);
@@ -29,10 +32,6 @@ public class StudentView extends JFrame{
         return optionList.getSelectedIndex();
     }
 
-    public void addSearchButtonListener(ActionListener listenerForSearchButton){
-        searchButton.addActionListener(listenerForSearchButton);
-    }
-
     public StudentView(){
 
         String[] week = {
@@ -47,30 +46,78 @@ public class StudentView extends JFrame{
         optionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         optionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        formatOptionList();
+
         setContentPane(mainPanel);
         setTitle("Student Menu");
         setSize(450,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
-//        searchButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                int option = optionList.getSelectedIndex();
-//                String name = tfStudentName.getText();
-//                String id = tfStudentID.getText();
-//                outputArea.setText(
-//                        "ID: " + id
-//                        + "\nName: " + name
-//                        + "\noption selected: " + option
-//                );
-//            }
-//        });
+
     }
 
-    public static void main(String[] args) {
-        StudentView myFrame = new StudentView();
+    public void addSearchButtonListener(ActionListener listenerForSearchButton){
+        searchButton.addActionListener(listenerForSearchButton);
     }
 
+    private void formatOptionList(){
+        tfCourseName.setEnabled(false);
+        tfCourseName.setText("N/A");
+        tfCourseNum.setEnabled(false);
+        tfCourseNum.setText("N/A");
+        tfSecNum.setEnabled(false);
+        tfSecNum.setText("N/A");
+        optionList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                switch (optionList.getSelectedIndex()+1) {
+                    case 1:
+                        tfCourseName.setEnabled(true);
+                        tfCourseName.setText("");
+                        tfCourseNum.setEnabled(true);
+                        tfCourseNum.setText("");
+                        tfSecNum.setEnabled(false);
+                        tfSecNum.setText("N/A");
+                        break;
+                    case 2:
+                    case 3:
+                        tfCourseName.setEnabled(true);
+                        tfCourseName.setText("");
+                        tfCourseNum.setEnabled(true);
+                        tfCourseNum.setText("");
+                        tfSecNum.setEnabled(true);
+                        tfSecNum.setText("");
+                        break;
+                    case 4:
+                    case 5:
+                        tfCourseName.setEnabled(false);
+                        tfCourseName.setText("N/A");
+                        tfCourseNum.setEnabled(false);
+                        tfCourseNum.setText("N/A");
+                        tfSecNum.setEnabled(false);
+                        tfSecNum.setText("N/A");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    }
+
+    public String getCourseName() {
+        return tfCourseName.getText();
+    }
+
+    public String getCourseNum() {
+        return tfCourseNum.getText();
+    }
+
+    public String getSecNum() {
+        return tfSecNum.getText();
+    }
+
+    private JTextField tfCourseNum;
+    private JTextField tfSecNum;
 
 }
