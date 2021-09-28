@@ -14,11 +14,11 @@ public class StudentControllerJK {
         this.theView = theView;
         this.theModel = theModel;
 
-        theView.addSearchButtonListener(new StudentFormListener());
+        theView.addSearchButtonListener(new SearchButtonListener());
 
     }
 
-    class StudentFormListener implements ActionListener{
+    class SearchButtonListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
