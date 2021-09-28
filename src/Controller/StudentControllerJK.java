@@ -25,13 +25,14 @@ public class StudentControllerJK {
             int option = theView.getSelectedOption();
             String name = theView.getStudetnName();
             String id = theView.getStudentID();
+            String courseName = theView.getCourseName();
+            String courseNum = theView.getCourseNum();
+            String secNum = theView.getSecNum();
 
+            // talk to back end using this input...
+            // and get a string back to output to the user
             switch (option) {
                 case 1:
-                    // theView.presentView1();
-                    //theView.getClassName()
-                    // theModel.searchCatalogue()...
-                    // outPutString = ...
                     break;
                 case 2:
                     break;
@@ -45,14 +46,15 @@ public class StudentControllerJK {
                     break;
             }
 
-            // talk to back end using this input...
-            // and get a string back to output to the user
+            String outPutString = "ID: " + id
+                    + "\nName: " + name
+                    + "\noption selected: " + option
+                    + "\ncourse name: " + courseName
+                    + "\ncourse number: " + courseNum
+                    + "\nsection number: " + secNum;
 
-            theView.setOutputAreaText(
-                    "ID: " + id
-                            + "\nName: " + name
-                            + "\noption selected: " + option
-            );
+            // send output back to view
+            theView.setOutputAreaText(outPutString);
 
         }
     }

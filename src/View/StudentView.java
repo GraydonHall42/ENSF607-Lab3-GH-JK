@@ -16,33 +16,19 @@ public class StudentView extends JFrame{
     private JPanel mainPanel;
     private JButton exitButton;
     private JTextField tfCourseName;
-
-    public void setOutputAreaText(String s){
-        outputArea.setText(s);
-    }
-
-    public String getStudetnName(){
-        return tfStudentName.getText();
-    }
-
-    public String getStudentID(){
-        return tfStudentID.getText();
-    }
-
-    public int getSelectedOption(){
-        return optionList.getSelectedIndex();
-    }
+    private JTextField tfCourseNum;
+    private JTextField tfSecNum;
 
     public StudentView(){
 
-        String[] week = {
+        String[] studentOptions = {
                 "1. Search catalogue courses",
                 "2. Add course to student courses",
                 "3. Remove course from student courses",
                 "4. View All courses in catalogue",
                 "5. View all courses taken by student"};
 
-        optionList.setListData(week);
+        optionList.setListData(studentOptions);
         optionList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         optionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         optionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -50,7 +36,7 @@ public class StudentView extends JFrame{
         // add functionality to option list
         formatOptionList();
 
-        // add functionality to clear button
+        // add functionality to clear and close button
         formatClearCloseButtons();
 
 
@@ -59,7 +45,6 @@ public class StudentView extends JFrame{
         setSize(450,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
-
 
     }
 
@@ -146,7 +131,20 @@ public class StudentView extends JFrame{
         return tfSecNum.getText();
     }
 
-    private JTextField tfCourseNum;
-    private JTextField tfSecNum;
+    public void setOutputAreaText(String s){
+        outputArea.setText(s);
+    }
+
+    public String getStudetnName(){
+        return tfStudentName.getText();
+    }
+
+    public String getStudentID(){
+        return tfStudentID.getText();
+    }
+
+    public int getSelectedOption(){
+        return optionList.getSelectedIndex();
+    }
 
 }
