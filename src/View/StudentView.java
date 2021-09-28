@@ -3,6 +3,7 @@ package View;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StudentView extends JFrame{
@@ -46,13 +47,41 @@ public class StudentView extends JFrame{
         optionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         optionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        // add functionality to option list
         formatOptionList();
+
+        // add functionality to clear button
+        formatClearCloseButtons();
+
 
         setContentPane(mainPanel);
         setTitle("Student Menu");
         setSize(450,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
+
+    }
+
+    private void formatClearCloseButtons() {
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tfStudentName.setText("");
+                tfStudentID.setText("");
+                outputArea.setText("");
+                tfCourseName.setText("");
+                tfCourseNum.setText("");
+                tfSecNum.setText("");
+            }
+        });
 
 
     }
